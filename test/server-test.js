@@ -48,6 +48,9 @@ describe('Server', () => {
     });
 
     describe('POST /pizzas', () => {
+      beforeEach(() => {
+        app.locals.pizzas = {};
+      });
 
       it('should receive and store data', (done) => {
         //Our implementation will go here…
