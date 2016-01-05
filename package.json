@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/turingschool-examples/pizza-express/issues"
   },
-  "homepage": "https://github.com/turingschool-examples/pizza-express#readme"
+  "homepage": "https://github.com/turingschool-examples/pizza-express#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
 }
