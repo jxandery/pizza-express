@@ -111,6 +111,20 @@ describe('Server', () => {
           done();
         });
       });
+
+      it('should redirect the user to their new pizza', (done) => {
+        var payload = { pizza: fixtures.validPizza };
+
+        this.request.post('/pizzas', { form: payload }, (error, response) => {
+          console.log(app.locals.pizzas);
+          console.log(payload);
+          if (error) { done(error); }
+          var pizzaKeys = Object.keys(app.locals.pizzas)
+          var newPizzaId = pizzaKeys[pizzaKeys.length - 1];
+          assert.equal(response.headers.location, '/pizzas/' + newPizzaId);
+          done();
+        });
+      });
     });
 
   });
