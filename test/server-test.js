@@ -93,12 +93,23 @@ describe('Server', () => {
       it('should return a page that has the title of the pizza', (done) => {
         var pizza = app.locals.pizzas.testPizza;
 
-       this.request.get('/pizzas/testPizza', (error, response) => {
-        if (error) { done(error) ;}
-        assert(response.body.includes(pizza.name),
-            `"${response.body}" does not include "${pizza.name}".`);
-        done();
-       });
+        this.request.get('/pizzas/testPizza', (error, response) => {
+          if (error) { done(error) ;}
+          assert(response.body.includes(pizza.name),
+              `"${response.body}" does not include "${pizza.name}".`);
+          done();
+        });
+      });
+
+      xit('should return a page that has the toppings of the pizza', (done) => {
+        var pizza = app.locals.pizzas.testPizza;
+
+        this.request.get('/pizzas/testPizza', (error, response) => {
+          if (error) { done(error) ;}
+          assert(response.body.includes(pizza.toppings),
+              `"${response.body}" does not include "${pizza.toppings}".`);
+          done();
+        });
       });
     });
 
