@@ -1,6 +1,6 @@
-const assert = require('assert');
-const request = require('request');
-const app = require('../server');
+const assert        = require('assert');
+const request       = require('request');
+const app           = require('../server');
 
 describe('Server', () => {
 
@@ -53,9 +53,22 @@ describe('Server', () => {
       });
 
       it('should receive and store data', (done) => {
-        //Our implementation will go here…
-        assert(true);
-        done();
+        var validPizza = {
+          pizza: {
+            name: 'A vegan pizza',
+            toppings: [ 'mushrooms', 'onions', 'garlic', 'black olives' ]
+          }
+        };
+
+        this.request.post('/pizzas', { form: validPizza }, (error, response) => {
+          if (error) { done(error); }
+
+          var pizzaCount = Object.keys(app.locals.pizzas).length;
+
+          assert.equal(pizzaCount, 1, `Expected 1 pizzas, found ${pizzaCount}`);
+
+          done();
+        });
       });
 
       it('should not return 404', (done) => {

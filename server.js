@@ -2,6 +2,7 @@ const express       = require('express');
 const app           = express();
 const path          = require('path');
 const bodyParser    = require('body-parser')
+const generateID    = require('./lib/generate-id')
 
 app.use(express.static('static'));
 app.use(bodyParser.json());
@@ -16,7 +17,12 @@ app.get('/', (request, response) => {
   response.render('index');
 });
 
+
 app.post('/pizzas', (request, response) => {
+  var id = generateID();
+
+  app.locals.pizzas[id] = request.body;
+
   response.sendStatus(201);
 });
 
