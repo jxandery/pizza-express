@@ -94,6 +94,7 @@ describe('Server', () => {
         var pizza = app.locals.pizzas.testPizza;
 
         this.request.get('/pizzas/testPizza', (error, response) => {
+          console.log(response);
           if (error) { done(error) ;}
           assert(response.body.includes(pizza.name),
               `"${response.body}" does not include "${pizza.name}".`);
@@ -101,13 +102,13 @@ describe('Server', () => {
         });
       });
 
-      xit('should return a page that has the toppings of the pizza', (done) => {
+      it('should return a page that has the toppings of the pizza', (done) => {
         var pizza = app.locals.pizzas.testPizza;
 
         this.request.get('/pizzas/testPizza', (error, response) => {
           if (error) { done(error) ;}
-          assert(response.body.includes(pizza.toppings),
-              `"${response.body}" does not include "${pizza.toppings}".`);
+          assert(response.body.includes(pizza.toppings[0]),
+              `"${response.body}" does not include "${pizza.toppings[0]}".`);
           done();
         });
       });
